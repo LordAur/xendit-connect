@@ -7,7 +7,6 @@ This package is to make easier to connect the xendit payment
 # Comming soon feature
 * Credit card
 * Batch disbursement
-* Disburse fund
 * NPWP validator
 
 # Installation
