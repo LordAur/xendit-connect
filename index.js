@@ -199,3 +199,20 @@ exports.createInvoice = (secretKey, json) => {
       });
   });
 };
+
+exports.viewDetailInvoice = (secretKey, invoiceId) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .get(`https://api.xendit.co/v2/invoices/${invoiceId}`)
+      .headers({ Authorization: `Basic ${base64}` })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
