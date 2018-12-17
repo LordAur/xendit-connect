@@ -153,3 +153,72 @@ xenditconnect.viewDetailVirtualAccount(secret_key, virtualAccountId)
 |--|--|
 | secret_key | Your xendit secret key  |
 | paymentId | Your virtual account id |
+
+### Create retail outlet
+One way for your customer to pay through Retail Outlets is by providing them Fixed Payment Code. Fixed payment code is a dedicated payment code under a name you choose, e.g. 'YourCompany - Kodepanda'. You will receive a callback each time this fixed payment code is paid.
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.createRetailOutlet(secret_key, jsonInput)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
+| jsonInput | Your input |
+
+```json
+{
+  "external_id": "FPC-123456",
+  "retail_outlet_name": "ALFAMART",
+  "name": "Yudha Pratama",
+  "expected_amount": 25000
+}
+```
+
+### Update retail outlet
+One way for your customer to pay through Retail Outlets is by providing them Fixed Payment Code. Fixed payment code is a dedicated payment code under a name you choose, e.g. 'YourCompany - Kodepanda'. You will receive a callback each time this fixed payment code is paid.
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.updateRetailOutlet(secret_key, paymentCodeId, jsonInput)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
+| paymentCodeId | Yopur return payment code from create retail outlet |
+| jsonInput | Your input |
+
+```json
+{
+  "name": "Yudha Pratama",
+  "expected_amount": 80000,
+  "expiration_date": "dateblabla"
+}
+```
+
+### View detail retail outlet data
+Sometime, you need to know the detail for your fixed payment code. This endpoint can be used to get the latest details from your fixed payment code
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.viewDetailRetailOutlet(secret_key, paymentCodeId)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
+| paymentCodeId | Yopur return payment code from create retail outlet |
