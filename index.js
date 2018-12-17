@@ -95,11 +95,28 @@ exports.updateVirtualAccount = (secretKey, virtualAccountId, json) => {
   });
 };
 
+exports.viewDetailVirtualAccountPayment = (secretKey, paymentId) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .get(`https://api.xendit.co/callback_virtual_account_payments/payment_id=${paymentId}`)
+      .headers({ Authorization: `Basic ${base64}` })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
+
 exports.viewDetailVirtualAccount = (secretKey, virtualAccountId) => {
   return new Promise((resolve, reject) => {
     const base64 = Buffer.from(`${secretKey}:`).toString('base64');
     unirest
-      .get(`https://api.xendit.co/callback_virtual_account_payments/payment_id=${virtualAccountId}`)
+      .get(`https://api.xendit.co/callback_virtual_accounts/${virtualAccountId}`)
       .headers({ Authorization: `Basic ${base64}` })
       .timeout(30000)
       .end((response) => {
