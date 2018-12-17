@@ -58,3 +58,21 @@ exports.getListBankVA = (secretKey) => {
       });
   });
 };
+
+exports.createVirtualAccount = (secretKey, json) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .post('https://api.xendit.co/callback_virtual_accounts')
+      .headers({ Authorization: `Basic ${base64}` })
+      .send({ external_id: json.external_id, bank_code: json.bank_code, name: json.name })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
