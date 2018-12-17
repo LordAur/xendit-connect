@@ -30,7 +30,7 @@ exports.nameValidator = (secretKey, json) => {
     unirest
       .post('https://api.xendit.co/bank_account_data_requests')
       .headers({ Authorization: `Basic ${base64}` })
-      .send({ bank_account_number: json.bank_account_number, bank_code: json.bank_code })
+      .send(json)
       .timeout(30000)
       .end((response) => {
         if (response.statusCode !== 200) {
@@ -65,7 +65,25 @@ exports.createVirtualAccount = (secretKey, json) => {
     unirest
       .post('https://api.xendit.co/callback_virtual_accounts')
       .headers({ Authorization: `Basic ${base64}` })
-      .send({ external_id: json.external_id, bank_code: json.bank_code, name: json.name })
+      .send(json)
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
+
+exports.updateVirtualAccount = (secretKey, virtualAccountId, json) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .post(`https://api.xendit.co/callback_virtual_accounts/${virtualAccountId}`)
+      .headers({ Authorization: `Basic ${base64}` })
+      .send(json)
       .timeout(30000)
       .end((response) => {
         if (response.statusCode !== 200) {
