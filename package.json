@@ -1,0 +1,32 @@
+{
+  "name": "xendit-connect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "xendit",
+    "payment"
+  ],
+  "homepage": "https://github.com/LordAur/xendit-connect",
+  "bugs": {
+    "url": "https://github.com/LordAur/xendit-connect/issues",
+    "email": "yudha.webdev@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LordAur/xendit-connect"
+  },
+  "authors": [
+    {
+      "name": "Yudha Pratama Wicaksana",
+      "email": "yudha.webdev@gmail.com",
+      "homepage": "https://yudhapratama.com",
+      "github": "https://github.com/LordAur",
+      "twitter": "https://twitter.com/LordAur"
+    }
+  ],
+  "license": "MIT"
+}
