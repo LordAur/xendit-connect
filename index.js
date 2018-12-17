@@ -285,3 +285,20 @@ exports.getDisbursementByExternaId = (secretKey, externalId) => {
       });
   });
 };
+
+exports.getListDisbursementBank = (secretKey) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .get('https://api.xendit.co/available_disbursements_banks')
+      .headers({ Authorization: `Basic ${base64}` })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
