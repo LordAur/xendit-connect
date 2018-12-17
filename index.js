@@ -216,3 +216,20 @@ exports.viewDetailInvoice = (secretKey, invoiceId) => {
       });
   });
 };
+
+exports.makeInvoiceExpire = (secretKey, invoiceId) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .post(`https://api.xendit.co/invoices/${invoiceId}/expire!`)
+      .headers({ Authorization: `Basic ${base64}` })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
