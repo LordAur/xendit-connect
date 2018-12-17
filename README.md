@@ -372,4 +372,4 @@ xenditconnect.getListDisbursementBank(secret_key)
 | secret_key | Your xendit secret key  |
 
 # Note
-For more detail about API Refrence Xendit, you can read on [https://xendit.github.io/apireference](https://xendit.github.io/apireference/)
+For more detail about API Refrence Xendit, you can read at [https://xendit.github.io/apireference](https://xendit.github.io/apireference/)
