@@ -26,3 +26,44 @@ xenditconnect.getBalance(secret_key, account_type)
 |--|--|
 | secret_key | Your xendit secret key  |
 | account_type | Use `CASH`, `HOLDING` or `TAX`. You can use empty value, and default value is `CASH`|
+
+### Name validator
+The Name Validator can be used to look up the name of an account holder for any bank account in Indonesia, except virtual account.
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.nameValidator(secret_key, jsonInput)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
+| jsonInput | Your input |
+
+Input parameter
+```
+{
+  bank_account_number: '1234567890',
+  bank_code: 'BNI',
+}
+```
+
+### Get list banks for virtual account
+Get list banks virtual account allow you to retrieve all bank that can be used for payment
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.getListBankVA(secret_key, account_type)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
