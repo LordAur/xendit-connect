@@ -81,7 +81,7 @@ exports.updateVirtualAccount = (secretKey, virtualAccountId, json) => {
   return new Promise((resolve, reject) => {
     const base64 = Buffer.from(`${secretKey}:`).toString('base64');
     unirest
-      .post(`https://api.xendit.co/callback_virtual_accounts/${virtualAccountId}`)
+      .patch(`https://api.xendit.co/callback_virtual_accounts/${virtualAccountId}`)
       .headers({ Authorization: `Basic ${base64}` })
       .send(json)
       .timeout(30000)
@@ -134,6 +134,24 @@ exports.createRetailOutlet = (secretKey, json) => {
     const base64 = Buffer.from(`${secretKey}:`).toString('base64');
     unirest
       .post('https://api.xendit.co/fixed_payment_code')
+      .headers({ Authorization: `Basic ${base64}` })
+      .send(json)
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
+
+exports.updateRetailOutlet = (secretKey, paymentCodeId, json) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .patch(`https://api.xendit.co/fixed_payment_code/${paymentCodeId}`)
       .headers({ Authorization: `Basic ${base64}` })
       .send(json)
       .timeout(30000)
