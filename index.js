@@ -164,3 +164,20 @@ exports.updateRetailOutlet = (secretKey, paymentCodeId, json) => {
       });
   });
 };
+
+exports.viewDetailRetailOutlet = (secretKey, paymentCodeId) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .get(`https://api.xendit.co/fixed_payment_code/${paymentCodeId}`)
+      .headers({ Authorization: `Basic ${base64}` })
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
