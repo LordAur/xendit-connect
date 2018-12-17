@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 30000"
   },
   "keywords": [
     "xendit",
@@ -28,5 +28,14 @@
       "twitter": "https://twitter.com/LordAur"
     }
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "unirest": "^0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0"
+  }
 }
