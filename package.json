@@ -1,7 +1,7 @@
 {
   "name": "xendit-connect",
   "version": "1.0.0",
-  "description": "",
+  "description": "This package is to make easier to connect the xendit payment",
   "main": "index.js",
   "scripts": {
     "test": "mocha --timeout 30000"
