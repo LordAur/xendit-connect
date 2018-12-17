@@ -128,3 +128,21 @@ exports.viewDetailVirtualAccount = (secretKey, virtualAccountId) => {
       });
   });
 };
+
+exports.createRetailOutlet = (secretKey, json) => {
+  return new Promise((resolve, reject) => {
+    const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    unirest
+      .post('https://api.xendit.co/fixed_payment_code')
+      .headers({ Authorization: `Basic ${base64}` })
+      .send(json)
+      .timeout(30000)
+      .end((response) => {
+        if (response.statusCode !== 200) {
+          reject(response.body);
+        }
+
+        resolve(response.body);
+      });
+  });
+};
