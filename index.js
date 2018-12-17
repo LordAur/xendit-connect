@@ -1,10 +1,17 @@
 const unirest = require('unirest');
 
-exports.getBalance = (secretKey) => {
+exports.getBalance = (secretKey, type = null) => {
   return new Promise((resolve, reject) => {
     const base64 = Buffer.from(`${secretKey}:`).toString('base64');
+    let url = '';
+    if (type === null) {
+      url = 'https://api.xendit.co/balance';
+    } else {
+      url = `https://api.xendit.co/balance?account_type=${type.toUpperCase()}`;
+    }
+
     unirest
-      .get('https://api.xendit.co/balance')
+      .get(url)
       .headers({ Authorization: `Basic ${base64}` })
       .timeout(30000)
       .end((response) => {
