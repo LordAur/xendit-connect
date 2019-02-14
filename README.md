@@ -263,7 +263,7 @@ Input json data
 You can simulate payment from your invoice development mode.
 ```javascript
 const xenditconnect = require('xendit-connect');
-xenditconnect.simulatePayment(secret_key, json)
+xenditconnect.simulatePayment(secret_key, jsonInput)
   .then((success) => {
     res.json(success);
   })
