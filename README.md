@@ -259,6 +259,31 @@ Input json data
 }
 ```
 
+### Simulate Payment Bank
+You can simulate payment from your invoice development mode.
+```javascript
+const xenditconnect = require('xendit-connect');
+xenditconnect.simulatePayment(secret_key, json)
+  .then((success) => {
+    res.json(success);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+```
+| Parameter | Description  |
+|--|--|
+| secret_key | Your xendit secret key  |
+| jsonInput | Your input |
+
+Input json data
+```json
+{
+	"bank_code": "MANDIRI",
+	"bank_account_number": "886089999706981",
+	"transfer_amount": 50000
+}
+
 ### View detail invoice data
 ```javascript
 const xenditconnect = require('xendit-connect');
