@@ -283,6 +283,7 @@ Input json data
 	"bank_account_number": "886089999706981",
 	"transfer_amount": 50000
 }
+```
 
 ### View detail invoice data
 ```javascript
