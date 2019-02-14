@@ -269,7 +269,7 @@ exports.getDisbursementById = (secretKey, disbursementId) => {
   });
 };
 
-exports.getDisbursementByExternaId = (secretKey, externalId) => {
+exports.getDisbursementByExternalId = (secretKey, externalId) => {
   return new Promise((resolve, reject) => {
     const base64 = Buffer.from(`${secretKey}:`).toString('base64');
     unirest
