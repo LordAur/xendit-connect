@@ -1,6 +1,6 @@
 {
   "name": "xendit-connect",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "This package is to make easier to connect the xendit payment",
   "main": "index.js",
   "scripts": {
